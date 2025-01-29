@@ -1,4 +1,4 @@
-import gdal, ogr, gdalconst, osr
+from osgeo import gdal, ogr, gdalconst, osr
 from pathlib import Path
 import re
 import sys
