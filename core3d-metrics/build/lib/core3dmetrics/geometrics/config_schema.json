@@ -1,0 +1,323 @@
+{
+   "$schema": "http://json-schema.org/draft-04/schema#",
+   "name": "geometrics configuration schema",
+   "definitions": {
+      "CLSMatchValue": {
+        "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 256
+              }
+            }
+          ]
+      },
+      "CLSMatchValueArrayOf": {
+        "oneOf": [
+          {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 256
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/CLSMatchValue"
+            }
+          }
+        ]
+      }
+   },
+
+
+   "type": "object",
+   "required": [
+      "INPUT.REF",
+      "INPUT.TEST",
+      "OPTIONS",
+      "PLOTS",
+      "MATERIALS.REF"
+   ],
+   "additionalProperties": false,
+   "properties": {
+      "INPUT.REF": {
+         "type": "object",
+         "required": [
+            "DSMFilename",
+            "DTMFilename",
+            "CLSFilename",
+            "CLSMatchValue"
+         ],
+         "optional": [
+            "MTLFilename",
+            "NDXFilename"
+         ],
+         "additionalProperties": false,
+         "properties": {
+            "DSMFilename": {
+               "type": "string"
+            },
+            "DTMFilename": {
+               "type": "string"
+            },
+            "CLSFilename": {
+               "type": "string"
+            },
+            "MTLFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "NDXFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+           "CLSMatchValue": {
+              "$ref": "#/definitions/CLSMatchValueArrayOf"
+            }
+         }
+      },      
+      "INPUT.TEST": {
+         "type": "object",
+         "required": [
+            "DSMFilename",
+            "CLSFilename",
+            "CLSMatchValue"
+         ],
+         "optional": [
+            "ImagePairFilename",
+            "ImagePairDataFilename",
+            "FilesChosenFilename"
+         ],
+         "additionalProperties": false,
+         "properties": {
+            "DSMFilename": {
+               "type": "string"
+            },
+            "DTMFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  }, 
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "CONFFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "CLSFilename": {
+               "type": "string"
+            },
+            "ImagePairFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "ImagePairDataFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "FilesChosenFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "MTLFilename": {
+               "oneOf": [
+                  {
+                     "type": "string"
+                  }, 
+                  {
+                     "type": "null"
+                  }
+               ]
+            },
+            "CLSMatchValue": {
+              "$ref": "#/definitions/CLSMatchValueArrayOf"
+            }
+
+         }
+      },
+      "OPTIONS": {
+         "type": "object",
+         "required": [
+            "QuantizeHeight"
+         ],
+        "optional": [
+            "AlignModel",
+            "SaveAligned",
+            "UseMultiprocessing"
+         ],
+         "additionalProperties": false,
+         "properties": {
+            "QuantizeHeight": {
+              "type": "boolean"
+            },
+            "AlignModel": {
+              "type": "boolean"
+            },
+            "SaveAligned": {
+              "type": "boolean"
+            },
+            "UseMultiprocessing": {
+              "type": "boolean"
+            },
+            "TerrainZErrorThreshold": {
+              "type": "number"
+            },
+           "TerrainCLSIgnoreValues": {
+                "$ref": "#/definitions/CLSMatchValue"
+            }
+         }
+      },
+      "OBJECTWISE": {
+          "type": "object",
+          "optional": [
+              "Enable",
+              "MergeRadius"
+         ],
+		 "additionalProperties": false,
+         "properties": {
+           "Enable": {
+             "type": "boolean"
+           },
+           "MergeRadius": {
+             "type": "number"
+           }
+         }
+      },
+      "PLOTS": {
+          "type": "object",
+          "required": [
+              "ShowPlots",
+              "SavePlots"
+         ],
+		 "additionalProperties": false,
+         "properties": {
+           "ShowPlots": {
+             "type": "boolean"
+           },
+           "SavePlots": {
+             "type": "boolean"
+           }
+         }
+      },
+      "MATERIALS.REF": {
+         "type": "object",
+         "required": [
+            "MaterialNames",
+            "MaterialIndicesToIgnore"
+         ],
+         "additionalProperties": true,
+         "properties": {
+            "MaterialNames": {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               }
+            },
+            "MaterialIndicesToIgnore": {
+               "oneOf": [
+                  {
+                     "type":"integer",
+                     "minimum": 0
+                  },
+                  {
+                     "type": "array",
+                     "items": {
+                        "type": "integer",
+                        "minimum": 0
+                     }
+                  }
+               ]
+            }
+         }
+      },
+      "REGEXEPATH": {
+         "type": "object",
+         "additionalProperties": false,
+         "properties": {
+            "Align3DPath": {
+               "type": "string"
+            }
+         }
+      },
+      "BLENDER.TEST": {
+         "type": "object",
+         "additionalProperties": false,
+         "properties": {
+            "OBJDirectoryFilename": {
+               "type": "string"
+            },
+            "GSD": {
+               "type": "number"
+            },
+            "bbox": {
+               "type": "array",
+               "items": {
+                 "type": "number"
+               }
+            },
+            "+Z": {
+               "type": "boolean"
+            },
+            "OrbitalLocations": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "ElevationAngle": {
+               "type": "number"
+            },
+            "FocalLength": {
+               "type": "number"
+            },
+            "RadialDistance": {
+               "type": "number"
+            }
+         }
+      }
+   }
+}

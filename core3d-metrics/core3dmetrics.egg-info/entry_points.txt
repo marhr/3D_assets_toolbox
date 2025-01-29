@@ -1,0 +1,2 @@
+[console_scripts]
+core3d-metrics = core3dmetrics:main
