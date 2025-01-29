@@ -5,7 +5,7 @@
 import os
 import platform
 import numpy as np
-import gdal
+from osgeo import gdal
 from utils.align3d import AlignParameters, AlignTarget2Reference
 from datetime import datetime
 import sys
