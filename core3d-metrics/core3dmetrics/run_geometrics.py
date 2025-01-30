@@ -91,7 +91,7 @@ def run_geometrics(config_file, ref_path=None, test_path=None, output_path=None,
 
     # GDAL memory driver
     import subprocess
-    import osr
+    from osgeo import osr
     reprojected_filenames = {}
     for file_src in [test_dsm_filename, test_dtm_filename, test_cls_filename]:
         interp_method = gdalconst.GRA_NearestNeighbour
