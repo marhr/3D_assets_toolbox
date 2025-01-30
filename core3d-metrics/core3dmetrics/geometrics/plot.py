@@ -65,7 +65,7 @@ class plot:
     def make(self, image=None, title='', fig=None, **kwargs):
 
         if 'badValue' in kwargs:
-            image = np.array(image)
+            image = image.astype(np.float32)#np.array(image)
             image[image == kwargs['badValue']] = np.nan
 
         plt.figure(fig)
