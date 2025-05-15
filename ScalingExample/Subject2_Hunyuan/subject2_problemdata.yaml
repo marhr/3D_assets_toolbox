@@ -1,0 +1,42 @@
+ProblemData: 
+  DataDir: "./examples/Subject2_Hunyuan/"
+  ScanFile: "mariana_leg_1_cleaned_reoriented_ply.ply"
+  BottomCut: 7
+  TopCut: 88
+  NCuts: 100
+  PlaneOffset: 0
+
+  Thickness: 
+    zDependence: 2
+    zParameters: "6,3,3"
+  
+  CircumOpening: 
+    zDependence: 0
+    zParameters: "0,10,20,10,20"   
+
+  # YcutOffset: 
+  #   zDependence: 3
+  #   zParameters: "30,10,20,10,30"     
+
+  YcutOffset: 
+    zDependence: 4 # Fourth order generalized interpolation.
+    zParameters: "0,20,0.25,10,0.5,20,0.75,10,1.0,30"   
+  RadialOffset: 
+    zDependence: 2
+    zParameters: "4.0,2.0,2.0"
+
+  # References:
+  #   A: "-0.19412571821826546, 0.7326270767971326 ,-0.12695479416268204"
+  #   B: "0.12702970770956262 , 0.7138925003236775 ,-0.13635648600785083"
+  #   C: "-0.13625914944024048, -0.5950068844426634,-0.29644331952050823"
+  #   D: "0.07665878926210683 , -0.6199401981692446,-0.32792287239507373"
+
+  # Reoriented
+  References:
+    A: "-0.23426473,  0.01745453,  1.3189019"
+    B: "0.08484841, -0.01745453,  1.34188766"
+    C: "0., 0., 0."
+    D: "0.15347781961297963, 0.13316031685074808, 0.04752649438508879" # moved D
+    E: "0.21199332508386606, 0.1887748881249287, -0.20538679272888014"
+    F: "0.06248474976807365, -0.835718787989973, -0.13156408059534053"
+  #   # D: "2.16671828e-01, -5.55462535e-17,  5.85481836e-17" # real D
